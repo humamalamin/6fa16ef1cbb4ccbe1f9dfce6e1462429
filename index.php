@@ -12,7 +12,6 @@ session_start();
 use App\Controllers\EmailController;
 use App\Controllers\SecureController;
 use App\Model\EmailModel;
-use App\Services\AuthMiddleware;
 
 $config = require 'config/config.php';
 $request_uri = $_SERVER['REQUEST_URI'];

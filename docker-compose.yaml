@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./html:/var/www/html
-    command: bash -c "php queue.php & php -S 127.0.0.1:8000"
+    # command: bash -c "php queue.php & php -S 127.0.0.1:8080"
     expose:
       - "9000"
     depends_on:
@@ -33,7 +33,6 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: levart_db
     ports:
@@ -50,7 +49,7 @@ services:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
-      retries: 3d
+      retries: 3
 
   redis:
     image: redis:latest
