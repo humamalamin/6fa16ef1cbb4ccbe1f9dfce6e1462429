@@ -41,6 +41,12 @@ or
 composer test
 ```
 
+### Running Unit Test
+
+```bash
+composer generate-test
+```
+
 ### Run with Docker
 
 ```Shell

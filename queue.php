@@ -8,8 +8,8 @@ $config = require 'config/config.php';
 
 try {
     $pdo = new PDO(
-        "pgsql:host=" . $config['database']['host'] .
-        ";dbname="  . $config['database']['name'] . "," .
+        "pgsql:host={$config['database']['host']};port={$config['database']['port']};
+        dbname={$config['database']['name']}",
         $config['database']['username'],
         $config['database']['password']
     );

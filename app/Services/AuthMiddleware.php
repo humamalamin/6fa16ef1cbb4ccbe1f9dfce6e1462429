@@ -14,7 +14,7 @@ class AuthMiddleware
         if (!$token) {
             if ($requireAuth) {
                 http_response_code(401);
-                exit(json_encode(['message' => 'Unauthorized']));
+                return json_encode(['message' => 'Unauthorized']);
             } else {
                 return;
             }
@@ -26,7 +26,7 @@ class AuthMiddleware
         } catch (\Exception $e) {
             if ($requireAuth) {
                 http_response_code(403);
-                exit(json_encode(['message' => 'Invalid token']));
+                return json_encode(['message' => 'Invalid token']);
             } else {
                 return;
             }

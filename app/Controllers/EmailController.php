@@ -43,6 +43,6 @@ class EmailController
 
         $this->emailModel->insert($recipient, $subject, $message);
 
-        echo json_encode(["status" => 'success']);
+        return json_encode(["status" => 'success']);
     }
 }

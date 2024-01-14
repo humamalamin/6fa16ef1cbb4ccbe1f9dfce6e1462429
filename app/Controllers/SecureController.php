@@ -24,12 +24,16 @@ class SecureController
             'exp' => $expirationTime,
         ];
 
-        $token = JWT::encode(
+        return $token = JWT::encode(
             $payload,
             $this->configApp['secret_key'],
             'HS256'
         );
+    }
 
-        echo json_encode(['token' => $token]);
+    public function generateTokenAsJson()
+    {
+        $token = $this->generateToken();
+        return json_encode(['token' => $token]);
     }
 }

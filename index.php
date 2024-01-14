@@ -49,12 +49,12 @@ switch ($request_uri) {
         $emailModel = new EmailModel($pdo);
         $emailController = new EmailController($config, $emailModel);
         
-        $emailController->sendEmail($recipient, $subject, $message);
+        echo $emailController->sendEmail($recipient, $subject, $message);
     
         break;
     case '/generate-token':
         $secureController = new SecureController($config['app']);
-        $secureController->generateToken();
+        echo $secureController->generateTokenAsJson();
 
         break;
     default:
