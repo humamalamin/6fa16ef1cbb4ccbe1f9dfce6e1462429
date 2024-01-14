@@ -8,6 +8,8 @@
 - Composer : https://getcomposer.org/download/
 - Redis : https://redis.io/
 
+please, all tech stack has been installed in your local 
+
 ## Configuration
 All configuration is in `.env` file. Please create new database or using exists database and running query scripts inside file database.sql.
 Import file collection.json in your Postman.
