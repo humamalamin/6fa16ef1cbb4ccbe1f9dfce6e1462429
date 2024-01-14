@@ -19,7 +19,7 @@ class SecureController
         $expirationTime = $issuedAt + 3600;
 
         $payload = [
-            'username' => $this->configApp['APP_USER_TEST'],
+            'username' => $this->configApp['user_test'],
             'iat' => $issuedAt,
             'exp' => $expirationTime,
         ];

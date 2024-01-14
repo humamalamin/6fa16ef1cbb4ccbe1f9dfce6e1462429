@@ -44,3 +44,5 @@ composer test
 ```Shell
 docker-compose up --build
 ```
+
+*Note: I have tried to implement dockerize in this app. But somehow I always fail when running it. So I suggest to use the manual way to run this application. Sincerely

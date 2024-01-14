@@ -1,30 +1,37 @@
-# Gunakan gambar resmi PHP 8.0
+# Base image
 FROM php:8.0-fpm
 
-RUN apt-get update
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    nginx \
+    curl \
+    libpq-dev \
+    libzip-dev \
+    unzip \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install Postgre PDO
-RUN apt-get install -y libpq-dev \
-    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
-    && docker-php-ext-install pdo pdo_pgsql pgsql
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_pgsql zip
 
-# Instal ekstensi PHP yang dibutuhkan
-RUN docker-php-ext-install pdo pdo_pgsql
-
-# Instal Composer
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Setel direktori kerja ke direktori aplikasi
+# Set up Nginx
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled2
+
+# Set up working directory
 WORKDIR /var/www/html
 
-# Salin file aplikasi ke dalam kontainer
+# Copy application code
 COPY . /var/www/html
 
-# Instal dependensi proyek menggunakan Composer
-RUN composer install
+# Install dependencies using Composer
+RUN composer install --no-interaction --optimize-autoloader
 
-# Expose port 9000 (port default PHP-FPM)
-EXPOSE 9000
+# Expose ports
+EXPOSE 80
 
-# Perintah yang akan dijalankan ketika kontainer dijalankan
-CMD ["php-fpm"]
+# Start services
+CMD service nginx start && php-fpm

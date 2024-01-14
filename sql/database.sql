@@ -1,3 +1,6 @@
+CREATE DATABASE recipients;
+
+
 CREATE TABLE recipients (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
